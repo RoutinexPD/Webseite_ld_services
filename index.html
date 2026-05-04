@@ -482,6 +482,16 @@
     }
     .footer-contact a:hover { color: var(--accent); }
     .footer-contact svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+    .footer-office { margin-bottom: 1.1rem; }
+    .footer-office-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.25rem;
+    }
+    .footer-office-addr {
+      display: flex; align-items: flex-start; gap: 7px;
+      font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+    }
+    .footer-office-addr svg { width: 13px; height: 13px; color: var(--accent); flex-shrink: 0; margin-top: 3px; }
     .footer-col h4 {
       font-family: var(--font-head);
       font-size: 0.8rem; letter-spacing: 0.18em;
@@ -900,8 +910,8 @@
     <h2 data-i18n-html="cta.title">READY TO MAKE YOUR<br />EVENT <span class="accent">UNSTOPPABLE?</span></h2>
     <p data-i18n="cta.sub">Tell us your dates, your site and your load — we'll deploy the right fleet, the right crew, on time.</p>
     <div class="cta-btns">
-      <a href="mailto:info@livedepartment.com" class="btn-solid" data-i18n="cta.btn1">Request a Quote →</a>
-      <a href="tel:+493000000000" class="btn-outline-accent" data-i18n="cta.btn2">Call Us Now</a>
+      <a href="mailto:office@livedepartment.services" class="btn-solid" data-i18n="cta.btn1">Request a Quote →</a>
+      <a href="tel:+4989250076640" class="btn-outline-accent" data-i18n="cta.btn2">Call Us Now</a>
     </div>
   </div>
 </section>
@@ -916,13 +926,35 @@
         </div>
         <p class="footer-desc" data-i18n="footer.desc">Germany's specialist in event vehicle deployment, aerial work platforms and production logistics — on site since 2009.</p>
         <div class="footer-contact">
-          <a href="tel:+493000000000">
+          <div class="footer-office">
+            <span class="footer-office-label">München</span>
+            <div class="footer-office-addr">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Inselkammerstr. 8, 82008 Unterhaching
+            </div>
+          </div>
+          <div class="footer-office">
+            <span class="footer-office-label">Leipzig</span>
+            <div class="footer-office-addr">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Rosa-Luxemburg-Str. 4, 04103 Leipzig
+            </div>
+          </div>
+          <a href="tel:+4989250076640">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.71 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +49 30 000 0000
+            +49 89 2500 766 40
           </a>
-          <a href="mailto:info@livedepartment.com">
+          <a href="tel:+4934122179830">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.71 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +49 341 2217 98 30
+          </a>
+          <a href="mailto:office@livedepartment.services">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@livedepartment.com
+            office@livedepartment.services
+          </a>
+          <a href="mailto:leipzig@livedepartment.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            leipzig@livedepartment.com
           </a>
         </div>
       </div>
@@ -961,13 +993,17 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="footer.copy">© 2026 livedepartment services GmbH. All rights reserved.</span>
+      <div>
+        <span data-i18n="footer.copy">© 2026 livedepartment services GmbH. All rights reserved.</span>
+        <div style="font-size:0.7rem;margin-top:0.25rem;color:var(--muted);opacity:0.5;">HRB 302176 &middot; Amtsgericht Traunstein &middot; Geschäftsführer: Pascal Duggleby</div>
+      </div>
       <div style="display:flex;gap:1.5rem;">
         <a href="#">Impressum</a>
         <a href="#">Datenschutzerklärung</a>
         <a href="#">AGB</a>
       </div>
     </div>
+
   </div>
 </footer>
 
