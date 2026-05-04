@@ -538,6 +538,7 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .btn-nav.desktop { display: none; }
+      .lang-switcher { display: none; }
       .nav-hamburger { display: flex; }
       .hero h1 { font-size: clamp(3.5rem, 14vw, 6rem); }
       .fleet-grid { grid-template-columns: 1fr; }
@@ -551,6 +552,29 @@
       .stats-inner { grid-template-columns: 1fr; }
       .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
     }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex; align-items: center;
+      gap: 2px;
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      padding: 2px;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      font-family: var(--font-body);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.28rem 0.65rem;
+      border: none; border-radius: 2px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn.active { background: var(--accent); color: white; }
+    .lang-btn:hover:not(.active) { color: var(--white); }
   </style>
 </head>
 <body>
@@ -561,23 +585,27 @@
     <img src="logo-transparent.png" alt="livedepartment services GmbH" />
   </a>
   <ul class="nav-links">
-    <li><a href="#solutions">Services</a></li>
-    <li><a href="#fleet">Fleet</a></li>
-    <li><a href="#markets">Markets</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#solutions" data-i18n="nav.services">Services</a></li>
+    <li><a href="#fleet" data-i18n="nav.fleet">Fleet</a></li>
+    <li><a href="#markets" data-i18n="nav.markets">Markets</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="btn-nav desktop">Get a Quote</a>
+  <a href="#contact" class="btn-nav desktop" data-i18n="nav.quote">Get a Quote</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
+  </div>
   <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#solutions" onclick="toggleMenu()">Services</a>
-  <a href="#fleet" onclick="toggleMenu()">Fleet</a>
-  <a href="#markets" onclick="toggleMenu()">Markets</a>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="#contact" class="btn-nav" onclick="toggleMenu()">Get a Quote</a>
+  <a href="#solutions" onclick="toggleMenu()" data-i18n="nav.services">Services</a>
+  <a href="#fleet" onclick="toggleMenu()" data-i18n="nav.fleet">Fleet</a>
+  <a href="#markets" onclick="toggleMenu()" data-i18n="nav.markets">Markets</a>
+  <a href="#about" onclick="toggleMenu()" data-i18n="nav.about">About</a>
+  <a href="#contact" onclick="toggleMenu()" data-i18n="nav.contact">Contact</a>
+  <a href="#contact" class="btn-nav" onclick="toggleMenu()" data-i18n="nav.quote">Get a Quote</a>
 </div>
 
 <!-- HERO -->
@@ -591,29 +619,29 @@
   <div class="hero-content">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      Professional Event Logistics
+      <span data-i18n="hero.badge">Professional Event Logistics</span>
     </div>
-    <h1>WE MOVE<br />EVENTS<br /><span class="accent">FORWARD.</span></h1>
-    <p class="hero-sub">From stage rigging to crowd control — livedepartment deploys the heavy equipment, specialist vehicles, and expert crews that transform empty venues into world-class experiences.</p>
+    <h1 data-i18n-html="hero.h1">WE MOVE<br />EVENTS<br /><span class="accent">FORWARD.</span></h1>
+    <p class="hero-sub" data-i18n="hero.sub">From stage rigging to crowd control — livedepartment deploys the heavy equipment, specialist vehicles, and expert crews that transform empty venues into world-class experiences.</p>
     <div class="hero-btns">
       <a href="#solutions" class="btn-hero-solid">
-        Our Services
+        <span data-i18n="hero.btn1">Our Services</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#fleet" class="btn-hero-outline">View Our Fleet</a>
+      <a href="#fleet" class="btn-hero-outline" data-i18n="hero.btn2">View Our Fleet</a>
     </div>
     <div class="hero-trust">
       <div class="hero-trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        ISO Certified
+        <span data-i18n="hero.trust1">ISO Certified</span>
       </div>
       <div class="hero-trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        24/7 Deployment
+        <span data-i18n="hero.trust2">24/7 Deployment</span>
       </div>
       <div class="hero-trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-        Nationwide Coverage
+        <span data-i18n="hero.trust3">Nationwide Coverage</span>
       </div>
     </div>
   </div>
@@ -623,17 +651,17 @@
 <section class="section solutions" id="solutions">
   <div class="container">
     <div class="solutions-header fade-up">
-      <span class="section-eyebrow">Our Services</span>
-      <h2 class="section-title">COMPLETE EVENT<br /><span class="accent">LOGISTICS</span></h2>
-      <p class="section-sub">From stage rigging to VIP transport — we deploy the right vehicle and the right crew for every event, every time.</p>
+      <span class="section-eyebrow" data-i18n="solutions.eyebrow">Our Services</span>
+      <h2 class="section-title" data-i18n-html="solutions.title">COMPLETE EVENT<br /><span class="accent">LOGISTICS</span></h2>
+      <p class="section-sub" data-i18n="solutions.sub">From stage rigging to VIP transport — we deploy the right vehicle and the right crew for every event, every time.</p>
     </div>
     <div class="solutions-list">
       <div class="solutions-item fade-up">
         <div class="solutions-item-left">
           <span class="solutions-item-num">01</span>
           <div>
-            <div class="solutions-item-name">Stage & Rigging Logistics</div>
-            <div class="solutions-item-desc">Forklifts, telehandlers and load-certified crews for heavy rigging and stage builds.</div>
+            <div class="solutions-item-name" data-i18n="sol.name1">Stage & Rigging Logistics</div>
+            <div class="solutions-item-desc" data-i18n="sol.desc1">Forklifts, telehandlers and load-certified crews for heavy rigging and stage builds.</div>
           </div>
         </div>
         <div class="solutions-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
@@ -642,8 +670,8 @@
         <div class="solutions-item-left">
           <span class="solutions-item-num">02</span>
           <div>
-            <div class="solutions-item-name">Aerial Work Platforms</div>
-            <div class="solutions-item-desc">Scissor lifts and boom lifts for lighting rigs, LED screens and truss systems.</div>
+            <div class="solutions-item-name" data-i18n="sol.name2">Aerial Work Platforms</div>
+            <div class="solutions-item-desc" data-i18n="sol.desc2">Scissor lifts and boom lifts for lighting rigs, LED screens and truss systems.</div>
           </div>
         </div>
         <div class="solutions-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
@@ -652,8 +680,8 @@
         <div class="solutions-item-left">
           <span class="solutions-item-num">03</span>
           <div>
-            <div class="solutions-item-name">Equipment Transport</div>
-            <div class="solutions-item-desc">Flatbed trucks and curtainsiders for PA systems, backline and production gear.</div>
+            <div class="solutions-item-name" data-i18n="sol.name3">Equipment Transport</div>
+            <div class="solutions-item-desc" data-i18n="sol.desc3">Flatbed trucks and curtainsiders for PA systems, backline and production gear.</div>
           </div>
         </div>
         <div class="solutions-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
@@ -662,8 +690,8 @@
         <div class="solutions-item-left">
           <span class="solutions-item-num">04</span>
           <div>
-            <div class="solutions-item-name">Festival Ground Operations</div>
-            <div class="solutions-item-desc">Utility vehicles, sweepers and ground support for multi-day festivals.</div>
+            <div class="solutions-item-name" data-i18n="sol.name4">Festival Ground Operations</div>
+            <div class="solutions-item-desc" data-i18n="sol.desc4">Utility vehicles, sweepers and ground support for multi-day festivals.</div>
           </div>
         </div>
         <div class="solutions-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
@@ -672,8 +700,8 @@
         <div class="solutions-item-left">
           <span class="solutions-item-num">05</span>
           <div>
-            <div class="solutions-item-name">Artist & VIP Transport</div>
-            <div class="solutions-item-desc">Golf carts, minivans and escorted transfers for artists, guests and production teams.</div>
+            <div class="solutions-item-name" data-i18n="sol.name5">Artist & VIP Transport</div>
+            <div class="solutions-item-desc" data-i18n="sol.desc5">Golf carts, minivans and escorted transfers for artists, guests and production teams.</div>
           </div>
         </div>
         <div class="solutions-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
@@ -682,8 +710,8 @@
         <div class="solutions-item-left">
           <span class="solutions-item-num">06</span>
           <div>
-            <div class="solutions-item-name">Power & Infrastructure</div>
-            <div class="solutions-item-desc">Generator trucks, cable management and site power distribution.</div>
+            <div class="solutions-item-name" data-i18n="sol.name6">Power & Infrastructure</div>
+            <div class="solutions-item-desc" data-i18n="sol.desc6">Generator trucks, cable management and site power distribution.</div>
           </div>
         </div>
         <div class="solutions-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
@@ -697,11 +725,11 @@
   <div class="container">
     <div class="fleet-header">
       <div class="fade-up">
-        <span class="section-eyebrow">Vehicle Fleet</span>
-        <h2 class="section-title">THE RIGHT MACHINE<br /><span class="accent">FOR EVERY JOB</span></h2>
-        <p class="section-sub">80+ specialist vehicles operated by trained crews — available 24/7 for your event.</p>
+        <span class="section-eyebrow" data-i18n="fleet.eyebrow">Vehicle Fleet</span>
+        <h2 class="section-title" data-i18n-html="fleet.title">THE RIGHT MACHINE<br /><span class="accent">FOR EVERY JOB</span></h2>
+        <p class="section-sub" data-i18n="fleet.sub">80+ specialist vehicles operated by trained crews — available 24/7 for your event.</p>
       </div>
-      <a href="#contact" class="btn-solid fade-up d2">View Full Fleet →</a>
+      <a href="#contact" class="btn-solid fade-up d2" data-i18n="fleet.btn">View Full Fleet →</a>
     </div>
     <div class="fleet-grid">
 
@@ -709,54 +737,54 @@
         <div class="fleet-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="14" width="6" height="6" rx="1"/><rect x="16" y="14" width="6" height="6" rx="1"/><path d="M8 17h8M2 17V8l6-4h8l4 4v9"/><path d="M12 4v10"/></svg>
         </div>
-        <div class="fleet-card-name">Forklift</div>
-        <div class="fleet-card-desc">Heavy-duty forklifts for loading docks, stage equipment, speaker stacks and structural rigging. Capacity up to 5t.</div>
-        <span class="fleet-card-tag">Available 24/7</span>
+        <div class="fleet-card-name" data-i18n="fleet.name1">Forklift</div>
+        <div class="fleet-card-desc" data-i18n="fleet.desc1">Heavy-duty forklifts for loading docks, stage equipment, speaker stacks and structural rigging. Capacity up to 5t.</div>
+        <span class="fleet-card-tag" data-i18n="fleet.tag">Available 24/7</span>
       </div>
 
       <div class="fleet-card fade-up d1">
         <div class="fleet-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="8" rx="1"/><rect x="7" y="10" width="10" height="10" rx="1"/><path d="M4 10h16M4 14h3M17 14h3"/></svg>
         </div>
-        <div class="fleet-card-name">Scissor Lift</div>
-        <div class="fleet-card-desc">Electric and diesel scissor lifts for lighting rigs, LED video walls and truss assembly up to 12m.</div>
-        <span class="fleet-card-tag">Available 24/7</span>
+        <div class="fleet-card-name" data-i18n="fleet.name2">Scissor Lift</div>
+        <div class="fleet-card-desc" data-i18n="fleet.desc2">Electric and diesel scissor lifts for lighting rigs, LED video walls and truss assembly up to 12m.</div>
+        <span class="fleet-card-tag" data-i18n="fleet.tag">Available 24/7</span>
       </div>
 
       <div class="fleet-card fade-up d2">
         <div class="fleet-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v8M8 6l4-4 4 4"/><rect x="6" y="10" width="12" height="4" rx="1"/><path d="M4 14h16M8 18h8M6 14v6M18 14v6"/></svg>
         </div>
-        <div class="fleet-card-name">Boom Lift</div>
-        <div class="fleet-card-desc">Articulating and straight boom lifts reaching up to 30m. Outdoor festivals, large-format rigging, aerial camera positions.</div>
-        <span class="fleet-card-tag">Available 24/7</span>
+        <div class="fleet-card-name" data-i18n="fleet.name3">Boom Lift</div>
+        <div class="fleet-card-desc" data-i18n="fleet.desc3">Articulating and straight boom lifts reaching up to 30m. Outdoor festivals, large-format rigging, aerial camera positions.</div>
+        <span class="fleet-card-tag" data-i18n="fleet.tag">Available 24/7</span>
       </div>
 
       <div class="fleet-card fade-up d3">
         <div class="fleet-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 12l4-7h10l4 7M3 12v5a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-5"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
         </div>
-        <div class="fleet-card-name">Telehandler</div>
-        <div class="fleet-card-desc">Telescopic handlers for rough-terrain festival sites. Loads up to 3.5t at 6m reach on uneven ground.</div>
-        <span class="fleet-card-tag">Available 24/7</span>
+        <div class="fleet-card-name" data-i18n="fleet.name4">Telehandler</div>
+        <div class="fleet-card-desc" data-i18n="fleet.desc4">Telescopic handlers for rough-terrain festival sites. Loads up to 3.5t at 6m reach on uneven ground.</div>
+        <span class="fleet-card-tag" data-i18n="fleet.tag">Available 24/7</span>
       </div>
 
       <div class="fleet-card fade-up">
         <div class="fleet-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="22" height="9" rx="1"/><path d="M1 11h22"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/><path d="M6 8V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3"/></svg>
         </div>
-        <div class="fleet-card-name">Flatbed Truck</div>
-        <div class="fleet-card-desc">7.5t to 26t flatbeds for PA systems, backline, production cases and full stage sets — nationwide delivery.</div>
-        <span class="fleet-card-tag">Available 24/7</span>
+        <div class="fleet-card-name" data-i18n="fleet.name5">Flatbed Truck</div>
+        <div class="fleet-card-desc" data-i18n="fleet.desc5">7.5t to 26t flatbeds for PA systems, backline, production cases and full stage sets — nationwide delivery.</div>
+        <span class="fleet-card-tag" data-i18n="fleet.tag">Available 24/7</span>
       </div>
 
       <div class="fleet-card fade-up d1">
         <div class="fleet-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></svg>
         </div>
-        <div class="fleet-card-name">Golf Cart Fleet</div>
-        <div class="fleet-card-desc">Electric and petrol golf carts for VIP hospitality, artist transport and crew mobility across large festival sites.</div>
-        <span class="fleet-card-tag">Available 24/7</span>
+        <div class="fleet-card-name" data-i18n="fleet.name6">Golf Cart Fleet</div>
+        <div class="fleet-card-desc" data-i18n="fleet.desc6">Electric and petrol golf carts for VIP hospitality, artist transport and crew mobility across large festival sites.</div>
+        <span class="fleet-card-tag" data-i18n="fleet.tag">Available 24/7</span>
       </div>
 
     </div>
@@ -769,19 +797,19 @@
     <div class="stats-inner">
       <div class="stat-item fade-up">
         <div class="stat-num"><span class="counter" data-target="500">0</span><sup>+</sup></div>
-        <div class="stat-label">Events Delivered</div>
+        <div class="stat-label" data-i18n="stats.label1">Events Delivered</div>
       </div>
       <div class="stat-item fade-up d1">
         <div class="stat-num"><span class="counter" data-target="80">0</span><sup>+</sup></div>
-        <div class="stat-label">Vehicles in Fleet</div>
+        <div class="stat-label" data-i18n="stats.label2">Vehicles in Fleet</div>
       </div>
       <div class="stat-item fade-up d2">
         <div class="stat-num">24<sup>/7</sup></div>
-        <div class="stat-label">Operational Support</div>
+        <div class="stat-label" data-i18n="stats.label3">Operational Support</div>
       </div>
       <div class="stat-item fade-up d3">
         <div class="stat-num"><span class="counter" data-target="15">0</span><sup>+</sup></div>
-        <div class="stat-label">Years on Site</div>
+        <div class="stat-label" data-i18n="stats.label4">Years on Site</div>
       </div>
     </div>
   </div>
@@ -791,26 +819,38 @@
 <section class="section markets" id="markets">
   <div class="container">
     <div class="markets-header fade-up">
-      <span class="section-eyebrow">Markets We Serve</span>
-      <h2 class="section-title">BUILT FOR<br /><span class="accent">EVERY FORMAT</span></h2>
-      <p class="section-sub">From intimate club nights to 80,000-capacity festivals — our fleet scales with your event.</p>
+      <span class="section-eyebrow" data-i18n="markets.eyebrow">Markets We Serve</span>
+      <h2 class="section-title" data-i18n-html="markets.title">BUILT FOR<br /><span class="accent">EVERY FORMAT</span></h2>
+      <p class="section-sub" data-i18n="markets.sub">From intimate club nights to 80,000-capacity festivals — our fleet scales with your event.</p>
     </div>
     <div class="markets-grid">
       <div class="market-card fade-up">
         <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=700&auto=format&fit=crop" alt="Concerts" loading="lazy" />
-        <div class="market-label"><h3>Concerts & Tours</h3><p>Full production support</p></div>
+        <div class="market-label">
+          <h3 data-i18n="market.name1">Concerts & Tours</h3>
+          <p data-i18n="market.desc1">Full production support</p>
+        </div>
       </div>
       <div class="market-card fade-up d1">
         <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=700&auto=format&fit=crop" alt="Festivals" loading="lazy" />
-        <div class="market-label"><h3>Outdoor Festivals</h3><p>Multi-stage operations</p></div>
+        <div class="market-label">
+          <h3 data-i18n="market.name2">Outdoor Festivals</h3>
+          <p data-i18n="market.desc2">Multi-stage operations</p>
+        </div>
       </div>
       <div class="market-card fade-up d2">
         <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&auto=format&fit=crop" alt="Corporate" loading="lazy" />
-        <div class="market-label"><h3>Corporate Events</h3><p>Fairs, launches & conferences</p></div>
+        <div class="market-label">
+          <h3 data-i18n="market.name3">Corporate Events</h3>
+          <p data-i18n="market.desc3">Fairs, launches & conferences</p>
+        </div>
       </div>
       <div class="market-card fade-up d3">
         <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=700&auto=format&fit=crop" alt="TV & Film" loading="lazy" />
-        <div class="market-label"><h3>TV & Film Production</h3><p>On-set logistics & grip</p></div>
+        <div class="market-label">
+          <h3 data-i18n="market.name4">TV & Film Production</h3>
+          <p data-i18n="market.desc4">On-set logistics & grip</p>
+        </div>
       </div>
     </div>
   </div>
@@ -824,29 +864,29 @@
         <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&auto=format&fit=crop" alt="Forklift at event build" loading="lazy" />
         <div class="about-badge">
           <div class="num">15+</div>
-          <div class="lbl">Years on Site</div>
+          <div class="lbl" data-i18n="about.badge">Years on Site</div>
         </div>
       </div>
       <div class="fade-up d2">
-        <span class="section-eyebrow">About livedepartment</span>
-        <h2 class="section-title">TRUSTED BY<br />EUROPE'S BIGGEST<br /><span class="accent">PRODUCTIONS</span></h2>
-        <p class="section-sub">We are a specialist event logistics company providing vehicle fleets, operated machinery and site support crews for live events across Germany and Europe.</p>
+        <span class="section-eyebrow" data-i18n="about.eyebrow">About livedepartment</span>
+        <h2 class="section-title" data-i18n-html="about.title">TRUSTED BY<br />EUROPE'S BIGGEST<br /><span class="accent">PRODUCTIONS</span></h2>
+        <p class="section-sub" data-i18n="about.sub">We are a specialist event logistics company providing vehicle fleets, operated machinery and site support crews for live events across Germany and Europe.</p>
         <div class="about-checklist">
           <div class="about-check">
             <div class="about-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Fully certified operators for all aerial work platforms
+            <span data-i18n="about.check1">Fully certified operators for all aerial work platforms</span>
           </div>
           <div class="about-check">
             <div class="about-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            24/7 dispatch — we mobilize within hours, not days
+            <span data-i18n="about.check2">24/7 dispatch — we mobilize within hours, not days</span>
           </div>
           <div class="about-check">
             <div class="about-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Insured, GPS-tracked fleet with full service history
+            <span data-i18n="about.check3">Insured, GPS-tracked fleet with full service history</span>
           </div>
           <div class="about-check">
             <div class="about-check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Dedicated production liaison for every event
+            <span data-i18n="about.check4">Dedicated production liaison for every event</span>
           </div>
         </div>
       </div>
@@ -857,11 +897,11 @@
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="container fade-up">
-    <h2>READY TO MAKE YOUR<br />EVENT <span class="accent">UNSTOPPABLE?</span></h2>
-    <p>Tell us your dates, your site and your load — we'll deploy the right fleet, the right crew, on time.</p>
+    <h2 data-i18n-html="cta.title">READY TO MAKE YOUR<br />EVENT <span class="accent">UNSTOPPABLE?</span></h2>
+    <p data-i18n="cta.sub">Tell us your dates, your site and your load — we'll deploy the right fleet, the right crew, on time.</p>
     <div class="cta-btns">
-      <a href="mailto:info@livedepartment.com" class="btn-solid">Request a Quote →</a>
-      <a href="tel:+493000000000" class="btn-outline-accent">Call Us Now</a>
+      <a href="mailto:info@livedepartment.com" class="btn-solid" data-i18n="cta.btn1">Request a Quote →</a>
+      <a href="tel:+493000000000" class="btn-outline-accent" data-i18n="cta.btn2">Call Us Now</a>
     </div>
   </div>
 </section>
@@ -874,7 +914,7 @@
         <div class="footer-logo">
           <img src="logo-transparent.png" alt="livedepartment services GmbH" style="height:56px;width:auto;display:block;" />
         </div>
-        <p class="footer-desc">Germany's specialist in event vehicle deployment, aerial work platforms and production logistics — on site since 2009.</p>
+        <p class="footer-desc" data-i18n="footer.desc">Germany's specialist in event vehicle deployment, aerial work platforms and production logistics — on site since 2009.</p>
         <div class="footer-contact">
           <a href="tel:+493000000000">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.71 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -887,41 +927,41 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4 data-i18n="footer.col1">Services</h4>
         <ul>
-          <li><a href="#">Stage & Rigging</a></li>
-          <li><a href="#">Aerial Platforms</a></li>
-          <li><a href="#">Equipment Transport</a></li>
-          <li><a href="#">Ground Operations</a></li>
-          <li><a href="#">VIP Transport</a></li>
-          <li><a href="#">Power & Infrastructure</a></li>
+          <li><a href="#" data-i18n="footer.sl1">Stage & Rigging</a></li>
+          <li><a href="#" data-i18n="footer.sl2">Aerial Platforms</a></li>
+          <li><a href="#" data-i18n="footer.sl3">Equipment Transport</a></li>
+          <li><a href="#" data-i18n="footer.sl4">Ground Operations</a></li>
+          <li><a href="#" data-i18n="footer.sl5">VIP Transport</a></li>
+          <li><a href="#" data-i18n="footer.sl6">Power & Infrastructure</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Fleet</h4>
+        <h4 data-i18n="footer.col2">Fleet</h4>
         <ul>
-          <li><a href="#">Forklifts</a></li>
-          <li><a href="#">Scissor Lifts</a></li>
-          <li><a href="#">Boom Lifts</a></li>
-          <li><a href="#">Telehandlers</a></li>
-          <li><a href="#">Flatbed Trucks</a></li>
-          <li><a href="#">Golf Carts</a></li>
+          <li><a href="#" data-i18n="footer.fl1">Forklifts</a></li>
+          <li><a href="#" data-i18n="footer.fl2">Scissor Lifts</a></li>
+          <li><a href="#" data-i18n="footer.fl3">Boom Lifts</a></li>
+          <li><a href="#" data-i18n="footer.fl4">Telehandlers</a></li>
+          <li><a href="#" data-i18n="footer.fl5">Flatbed Trucks</a></li>
+          <li><a href="#" data-i18n="footer.fl6">Golf Carts</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
+        <h4 data-i18n="footer.col3">Company</h4>
         <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#" data-i18n="footer.cl1">About Us</a></li>
+          <li><a href="#" data-i18n="footer.cl2">Careers</a></li>
+          <li><a href="#" data-i18n="footer.cl3">News</a></li>
+          <li><a href="#" data-i18n="footer.cl4">Contact</a></li>
           <li><a href="#">Impressum</a></li>
           <li><a href="#">Datenschutz</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 livedepartment services GmbH. All rights reserved.</span>
+      <span data-i18n="footer.copy">© 2026 livedepartment services GmbH. All rights reserved.</span>
       <div style="display:flex;gap:1.5rem;">
         <a href="#">Impressum</a>
         <a href="#">Datenschutzerklärung</a>
@@ -932,6 +972,233 @@
 </footer>
 
 <script>
+  const translations = {
+    en: {
+      'nav.services': 'Services',
+      'nav.fleet': 'Fleet',
+      'nav.markets': 'Markets',
+      'nav.about': 'About',
+      'nav.contact': 'Contact',
+      'nav.quote': 'Get a Quote',
+
+      'hero.badge': 'Professional Event Logistics',
+      'hero.h1': 'WE MOVE<br />EVENTS<br /><span class="accent">FORWARD.</span>',
+      'hero.sub': 'From stage rigging to crowd control — livedepartment deploys the heavy equipment, specialist vehicles, and expert crews that transform empty venues into world-class experiences.',
+      'hero.btn1': 'Our Services',
+      'hero.btn2': 'View Our Fleet',
+      'hero.trust1': 'ISO Certified',
+      'hero.trust2': '24/7 Deployment',
+      'hero.trust3': 'Nationwide Coverage',
+
+      'solutions.eyebrow': 'Our Services',
+      'solutions.title': 'COMPLETE EVENT<br /><span class="accent">LOGISTICS</span>',
+      'solutions.sub': 'From stage rigging to VIP transport — we deploy the right vehicle and the right crew for every event, every time.',
+      'sol.name1': 'Stage & Rigging Logistics',
+      'sol.desc1': 'Forklifts, telehandlers and load-certified crews for heavy rigging and stage builds.',
+      'sol.name2': 'Aerial Work Platforms',
+      'sol.desc2': 'Scissor lifts and boom lifts for lighting rigs, LED screens and truss systems.',
+      'sol.name3': 'Equipment Transport',
+      'sol.desc3': 'Flatbed trucks and curtainsiders for PA systems, backline and production gear.',
+      'sol.name4': 'Festival Ground Operations',
+      'sol.desc4': 'Utility vehicles, sweepers and ground support for multi-day festivals.',
+      'sol.name5': 'Artist & VIP Transport',
+      'sol.desc5': 'Golf carts, minivans and escorted transfers for artists, guests and production teams.',
+      'sol.name6': 'Power & Infrastructure',
+      'sol.desc6': 'Generator trucks, cable management and site power distribution.',
+
+      'fleet.eyebrow': 'Vehicle Fleet',
+      'fleet.title': 'THE RIGHT MACHINE<br /><span class="accent">FOR EVERY JOB</span>',
+      'fleet.sub': '80+ specialist vehicles operated by trained crews — available 24/7 for your event.',
+      'fleet.btn': 'View Full Fleet →',
+      'fleet.name1': 'Forklift',
+      'fleet.desc1': 'Heavy-duty forklifts for loading docks, stage equipment, speaker stacks and structural rigging. Capacity up to 5t.',
+      'fleet.name2': 'Scissor Lift',
+      'fleet.desc2': 'Electric and diesel scissor lifts for lighting rigs, LED video walls and truss assembly up to 12m.',
+      'fleet.name3': 'Boom Lift',
+      'fleet.desc3': 'Articulating and straight boom lifts reaching up to 30m. Outdoor festivals, large-format rigging, aerial camera positions.',
+      'fleet.name4': 'Telehandler',
+      'fleet.desc4': 'Telescopic handlers for rough-terrain festival sites. Loads up to 3.5t at 6m reach on uneven ground.',
+      'fleet.name5': 'Flatbed Truck',
+      'fleet.desc5': '7.5t to 26t flatbeds for PA systems, backline, production cases and full stage sets — nationwide delivery.',
+      'fleet.name6': 'Golf Cart Fleet',
+      'fleet.desc6': 'Electric and petrol golf carts for VIP hospitality, artist transport and crew mobility across large festival sites.',
+      'fleet.tag': 'Available 24/7',
+
+      'stats.label1': 'Events Delivered',
+      'stats.label2': 'Vehicles in Fleet',
+      'stats.label3': 'Operational Support',
+      'stats.label4': 'Years on Site',
+
+      'markets.eyebrow': 'Markets We Serve',
+      'markets.title': 'BUILT FOR<br /><span class="accent">EVERY FORMAT</span>',
+      'markets.sub': 'From intimate club nights to 80,000-capacity festivals — our fleet scales with your event.',
+      'market.name1': 'Concerts & Tours',
+      'market.desc1': 'Full production support',
+      'market.name2': 'Outdoor Festivals',
+      'market.desc2': 'Multi-stage operations',
+      'market.name3': 'Corporate Events',
+      'market.desc3': 'Fairs, launches & conferences',
+      'market.name4': 'TV & Film Production',
+      'market.desc4': 'On-set logistics & grip',
+
+      'about.eyebrow': 'About livedepartment',
+      'about.title': 'TRUSTED BY<br />EUROPE’S BIGGEST<br /><span class="accent">PRODUCTIONS</span>',
+      'about.sub': 'We are a specialist event logistics company providing vehicle fleets, operated machinery and site support crews for live events across Germany and Europe.',
+      'about.check1': 'Fully certified operators for all aerial work platforms',
+      'about.check2': '24/7 dispatch — we mobilize within hours, not days',
+      'about.check3': 'Insured, GPS-tracked fleet with full service history',
+      'about.check4': 'Dedicated production liaison for every event',
+      'about.badge': 'Years on Site',
+
+      'cta.title': 'READY TO MAKE YOUR<br />EVENT <span class="accent">UNSTOPPABLE?</span>',
+      'cta.sub': 'Tell us your dates, your site and your load — we’ll deploy the right fleet, the right crew, on time.',
+      'cta.btn1': 'Request a Quote →',
+      'cta.btn2': 'Call Us Now',
+
+      'footer.desc': 'Germany’s specialist in event vehicle deployment, aerial work platforms and production logistics — on site since 2009.',
+      'footer.copy': '© 2026 livedepartment services GmbH. All rights reserved.',
+      'footer.col1': 'Services',
+      'footer.col2': 'Fleet',
+      'footer.col3': 'Company',
+      'footer.sl1': 'Stage & Rigging',
+      'footer.sl2': 'Aerial Platforms',
+      'footer.sl3': 'Equipment Transport',
+      'footer.sl4': 'Ground Operations',
+      'footer.sl5': 'VIP Transport',
+      'footer.sl6': 'Power & Infrastructure',
+      'footer.fl1': 'Forklifts',
+      'footer.fl2': 'Scissor Lifts',
+      'footer.fl3': 'Boom Lifts',
+      'footer.fl4': 'Telehandlers',
+      'footer.fl5': 'Flatbed Trucks',
+      'footer.fl6': 'Golf Carts',
+      'footer.cl1': 'About Us',
+      'footer.cl2': 'Careers',
+      'footer.cl3': 'News',
+      'footer.cl4': 'Contact'
+    },
+    de: {
+      'nav.services': 'Leistungen',
+      'nav.fleet': 'Fuhrpark',
+      'nav.markets': 'Märkte',
+      'nav.about': 'Über uns',
+      'nav.contact': 'Kontakt',
+      'nav.quote': 'Angebot anfragen',
+
+      'hero.badge': 'Professionelle Event-Logistik',
+      'hero.h1': 'WIR BEWEGEN<br />EVENTS<br /><span class="accent">VORWÄRTS.</span>',
+      'hero.sub': 'Von der Bühnentechnik bis zur Veranstaltungslogistik — livedepartment stellt schwere Maschinen, Spezialfahrzeuge und erfahrene Crews bereit, die leere Venues in erstklassige Erlebnisse verwandeln.',
+      'hero.btn1': 'Unsere Leistungen',
+      'hero.btn2': 'Fuhrpark ansehen',
+      'hero.trust1': 'ISO-zertifiziert',
+      'hero.trust2': '24/7 Einsatzbereit',
+      'hero.trust3': 'Bundesweite Abdeckung',
+
+      'solutions.eyebrow': 'Unsere Leistungen',
+      'solutions.title': 'VOLLSTÄNDIGE EVENT-<br /><span class="accent">LOGISTIK</span>',
+      'solutions.sub': 'Von der Bühnentechnik bis zum VIP-Transport — wir stellen das richtige Fahrzeug und die richtige Crew für jedes Event bereit.',
+      'sol.name1': 'Bühnen- & Rigging-Logistik',
+      'sol.desc1': 'Gabelstapler, Teleskopstapler und zertifizierte Crews für schweres Rigging und Bühnenaufbau.',
+      'sol.name2': 'Hubarbeitsbühnen',
+      'sol.desc2': 'Scherenlifte und Arbeitsbühnen für Lichtanlagen, LED-Screens und Traversensysteme.',
+      'sol.name3': 'Ausrüstungstransport',
+      'sol.desc3': 'Pritschenfahrzeuge und Planenwagen für PA-Systeme, Backline und Produktionsequipment.',
+      'sol.name4': 'Festival-Geländebetrieb',
+      'sol.desc4': 'Nutzfahrzeuge, Kehrmaschinen und Bodenunterstützung für mehrtägige Festivals.',
+      'sol.name5': 'Künstler- & VIP-Transport',
+      'sol.desc5': 'Golfcarts, Kleinbusse und begleitete Transfers für Künstler, Gäste und Produktionsteams.',
+      'sol.name6': 'Strom & Infrastruktur',
+      'sol.desc6': 'Generatorfahrzeuge, Kabelmanagement und Stromverteilung auf dem Gelände.',
+
+      'fleet.eyebrow': 'Fahrzeugflotte',
+      'fleet.title': 'DIE RICHTIGE MASCHINE<br /><span class="accent">FÜR JEDEN EINSATZ</span>',
+      'fleet.sub': 'Über 80 Spezialfahrzeuge, betrieben von ausgebildeten Crews — 24/7 verfügbar für Ihr Event.',
+      'fleet.btn': 'Gesamte Flotte →',
+      'fleet.name1': 'Gabelstapler',
+      'fleet.desc1': 'Schwerlast-Gabelstapler für Laderampen, Bühnentechnik, Lautsprecherstapel und Strukturrigging. Kapazität bis 5t.',
+      'fleet.name2': 'Scherenlift',
+      'fleet.desc2': 'Elektrische und Diesel-Scherenlifte für Lichtanlagen, LED-Videowände und Traversenmontage bis 12m.',
+      'fleet.name3': 'Arbeitsbühne',
+      'fleet.desc3': 'Gelenk- und Teleskop-Arbeitsbühnen bis 30m Höhe. Outdoor-Festivals, Großformat-Rigging, Kameraposition.',
+      'fleet.name4': 'Teleskopstapler',
+      'fleet.desc4': 'Teleskopstapler für unwegsames Festivalgelände. Lasten bis 3,5t bei 6m Reichweite auf unebenem Boden.',
+      'fleet.name5': 'Pritschenwagen',
+      'fleet.desc5': '7,5t bis 26t Pritschenfahrzeuge für PA-Systeme, Backline, Produktionsfälle und komplette Bühnenaufbauten — bundesweiter Lieferservice.',
+      'fleet.name6': 'Golfcart-Flotte',
+      'fleet.desc6': 'Elektrische und Benzin-Golfcarts für VIP-Hospitality, Künstlertransport und Crew-Mobilität auf großen Festivalgeränden.',
+      'fleet.tag': '24/7 verfügbar',
+
+      'stats.label1': 'Events durchgeführt',
+      'stats.label2': 'Fahrzeuge im Fuhrpark',
+      'stats.label3': 'Einsatzbereit',
+      'stats.label4': 'Jahre Erfahrung',
+
+      'markets.eyebrow': 'Unsere Märkte',
+      'markets.title': 'FÜR JEDES<br /><span class="accent">FORMAT GERÜSTET</span>',
+      'markets.sub': 'Vom intimen Club-Abend bis zum 80.000-Besucher-Festival — unsere Flotte skaliert mit Ihrem Event.',
+      'market.name1': 'Konzerte & Touren',
+      'market.desc1': 'Vollständiger Produktionssupport',
+      'market.name2': 'Outdoor-Festivals',
+      'market.desc2': 'Multi-Bühnen-Betrieb',
+      'market.name3': 'Firmenveranstaltungen',
+      'market.desc3': 'Messen, Launches & Konferenzen',
+      'market.name4': 'TV- & Filmproduktion',
+      'market.desc4': 'Set-Logistik & Grip',
+
+      'about.eyebrow': 'Über livedepartment',
+      'about.title': 'VERTRAUEN VON<br />EUROPAS GRÖßTEN<br /><span class="accent">PRODUKTIONEN</span>',
+      'about.sub': 'Wir sind ein spezialisiertes Event-Logistikunternehmen, das Fahrzeugflotten, betriebene Maschinen und Vor-Ort-Support-Crews für Live-Events in Deutschland und Europa bereitstellt.',
+      'about.check1': 'Vollständig zertifizierte Bediener für alle Hubarbeitsbühnen',
+      'about.check2': '24/7 Disposition — wir mobilisieren innerhalb von Stunden, nicht Tagen',
+      'about.check3': 'Versicherte, GPS-verfolgte Flotte mit vollständiger Servicehistorie',
+      'about.check4': 'Dedizierter Produktionsbetreuer für jedes Event',
+      'about.badge': 'Jahre vor Ort',
+
+      'cta.title': 'BEREIT FÜR EIN<br /><span class="accent">UNVERGESSLICHES EVENT?</span>',
+      'cta.sub': 'Teilen Sie uns Ihre Termine, das Gelände und die Lasten mit — wir stellen die richtige Flotte und Crew pünktlich bereit.',
+      'cta.btn1': 'Angebot anfragen →',
+      'cta.btn2': 'Jetzt anrufen',
+
+      'footer.desc': 'Deutschlands Spezialist für Event-Fahrzeugeinsatz, Hubarbeitsbühnen und Produktionslogistik — seit 2009 vor Ort.',
+      'footer.copy': '© 2026 livedepartment services GmbH. Alle Rechte vorbehalten.',
+      'footer.col1': 'Leistungen',
+      'footer.col2': 'Fuhrpark',
+      'footer.col3': 'Unternehmen',
+      'footer.sl1': 'Bühne & Rigging',
+      'footer.sl2': 'Hubarbeitsbühnen',
+      'footer.sl3': 'Ausrüstungstransport',
+      'footer.sl4': 'Geländebetrieb',
+      'footer.sl5': 'VIP-Transport',
+      'footer.sl6': 'Strom & Infrastruktur',
+      'footer.fl1': 'Gabelstapler',
+      'footer.fl2': 'Scherenlifte',
+      'footer.fl3': 'Arbeitsbühnen',
+      'footer.fl4': 'Teleskopstapler',
+      'footer.fl5': 'Pritschenfahrzeuge',
+      'footer.fl6': 'Golfcarts',
+      'footer.cl1': 'Über uns',
+      'footer.cl2': 'Karriere',
+      'footer.cl3': 'Neuigkeiten',
+      'footer.cl4': 'Kontakt'
+    }
+  };
+
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = t[el.dataset.i18n];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const v = t[el.dataset.i18nHtml];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+    localStorage.setItem('lang', lang);
+  }
+
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 10));
 
@@ -955,6 +1222,9 @@
   }, { threshold: 0.5 });
   const statsEl = document.getElementById('stats');
   if (statsEl) cio.observe(statsEl);
+
+  const savedLang = localStorage.getItem('lang') || 'en';
+  if (savedLang === 'de') setLang('de');
 </script>
 </body>
 </html>
