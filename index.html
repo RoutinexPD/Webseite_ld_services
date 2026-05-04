@@ -1249,6 +1249,11 @@
 
   const savedLang = localStorage.getItem('lang') || 'en';
   if (savedLang === 'de') setLang('de');
+
+  // Safety net: if IntersectionObserver never fires, reveal everything after 2s
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 2000);
 </script>
 </body>
 </html>
